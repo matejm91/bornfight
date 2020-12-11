@@ -128,6 +128,8 @@ class AlbumList extends React.Component {
 
     albumToEdit.favorite = true;
 
+    delete albumToEdit.artist;
+
     return fetch(`http://localhost:3004/albums/${albumId}`, {
       method: 'PUT',
       headers: {

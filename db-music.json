@@ -41,11 +41,7 @@
       "imageUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/20/6f/b5/206fb560-6fd5-15f9-0b68-88d309ffc5a6/19UMGIM53909.rgb.jpg/170x170bb.png",
       "releaseDate": "2019-08-23T00:00:00-07:00",
       "artistId": 0,
-      "favorite": false,
-      "artist": {
-        "id": 0,
-        "title": "Taylor Swift"
-      }
+      "favorite": false
     },
     {
       "id": 1,
@@ -54,11 +50,7 @@
       "imageUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/a7/31/24/a731244c-e065-2f44-63a2-d15b6b27fefa/00602577427657.rgb.jpg/170x170bb.png",
       "releaseDate": "2019-03-29T00:00:00-07:00",
       "artistId": 1,
-      "favorite": false,
-      "artist": {
-        "id": 1,
-        "title": "Billie Eilish"
-      }
+      "favorite": false
     },
     {
       "id": 2,
@@ -67,11 +59,7 @@
       "imageUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music/02/16/dd/mzi.modzlreh.jpg/170x170bb.png",
       "releaseDate": "1976-11-01T00:00:00-07:00",
       "artistId": 2,
-      "favorite": false,
-      "artist": {
-        "id": 2,
-        "title": "James Taylor"
-      }
+      "favorite": false
     },
     {
       "id": 3,
@@ -80,11 +68,7 @@
       "imageUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/56/33/14/56331415-1036-71f5-a4ec-ec4e1065f69b/19UMGIM88564.rgb.jpg/170x170bb.png",
       "releaseDate": "2019-11-15T00:00:00-07:00",
       "artistId": 3,
-      "favorite": true,
-      "artist": {
-        "id": 3,
-        "title": "Various Artists"
-      }
+      "favorite": true
     },
     {
       "id": 4,
