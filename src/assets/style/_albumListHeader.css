@@ -1,0 +1,22 @@
+.bornfight-albumListHeader__header {
+  height: 100px;
+  left: 0px;
+  top: 100px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.183679);
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 180px;
+}
+
+.bornfight-albumListHeader__header p {
+  margin: auto 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: -0.876px;
+  color: #363636;
+}
+

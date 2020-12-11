@@ -1,0 +1,105 @@
+.bornfight-albumItem__entry {
+  position: relative;
+  display: table;
+  height: 90px;
+  margin: 10px 180px;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px #E7E7E7;
+  vertical-align: middle;
+}
+
+.bornfight-albumItem__entry-imgColumn,
+.bornfight-albumItem__entry-artistTitleColumn,
+.bornfight-albumItem__entry-releasedColumn,
+.bornfight-albumItem__entry-priceColumn,
+.bornfight-albumItem__entry-favoriteColumn {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 18px;
+}
+
+.bornfight-albumItem__entry-imgColumn {
+  width: 5%;
+}
+
+.bornfight-albumItem__entry-artistTitleColumn {
+  width: 40%;
+}
+
+.bornfight-albumItem__entry-titleColumn {
+  font-size: 18px;
+  color: #363636;
+  font-weight: 500;
+  margin: 6px 0;
+}
+
+.bornfight-albumItem__entry-artistColumn {
+  margin: 6px 0;
+}
+
+.bornfight-albumItem__entry-artistColumn a {
+  font-size: 12px;
+  font-weight: 400;
+  color: #A0A0A0;
+  margin: 6px 0;
+  text-decoration: none;
+}
+
+.bornfight-albumItem__entry-artistColumn a:hover {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 6px 0;
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.bornfight-albumItem__entry-releasedColumn {
+  font-size: 14px;
+  width: 15%;
+  text-align: center;
+}
+
+.bornfight-albumItem__entry-priceColumn {
+  width: 10%;
+  text-align: center;
+}
+
+.bornfight-albumItem__entry-favoriteColumn {
+  width: 15%;
+  text-align: center;
+}
+
+.bornfight-albumItem__entry-favoriteButton {
+  background: #13D6EA;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  width: 125px;
+  height: 25px;
+  text-align: center;
+  border: none;
+}
+
+.bornfight-albumItem__entry-removeFavoriteButton {
+  font-size: 10px;
+  line-height: 12px;
+  text-decoration-line: underline;
+  color: #13D6EA;
+  width: 125px;
+  height: 25px;
+  border: none;
+  background-color: #fff;
+}
+
+.bornfight-albumItem__entry-imgColumn img {
+  height: 54px;
+  width: 54px;
+  border: 1px solid #EEEEEE;
+  box-sizing: border-box;
+  border-radius: 3.85714px;
+  vertical-align: middle;
+}
