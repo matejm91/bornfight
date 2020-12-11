@@ -49,7 +49,7 @@
   color: #000;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .bornfight-albumListFilter__search i {
     right: 25px;
   }
@@ -74,4 +74,8 @@
   .bornfight-albumListFilter__suggestionListItem {
     padding: 10px 5px;
   }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 960px) {
+
 }
