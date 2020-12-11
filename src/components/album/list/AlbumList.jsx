@@ -26,18 +26,29 @@ class AlbumList extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData(this.props.match.params.artistId);
+    if (this.props.match.params.artistId) {
+      this.fetchArtistsAlbumList(this.props.match.params.artistId);
+    } else {
+      this.fetchData();
+    }
+    
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.match.params.artistId !== this.props.match.params.artistId) {
-      this.fetchData(this.props.match.params.artistId);
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.artistId !== this.props.match.params.artistId && this.props.match.params.artistId) {
+      this.fetchArtistsAlbumList(this.props.match.params.artistId);
+
+      this.setState({ suggestions: [] });
+    }
+
+    if (prevProps.match.params.artistId !== this.props.match.params.artistId && !this.props.match.params.artistId) {
+      this.fetchData();
 
       this.setState({ suggestions: [] });
     }
   }
 
-  fetchData = (artistId) => {
+  fetchData = () => {
     fetch(`http://localhost:3004/albums?_limit=${this.state.limit}`)
       .then(res => res.json())
       .then(
@@ -45,24 +56,11 @@ class AlbumList extends React.Component {
           fetch('http://localhost:3004/artists')
             .then(res => res.json())
             .then(artists => {
-              let alteredAlbums;
-              if (artistId) {
-                alteredAlbums = albums.filter(album => {
-                  if (album.artistId.toString() === artistId) {
-                    album.artist = artists.find(artist => artist.id === album.artistId);
-                    return album;
-                  }
-                });
-
-                this.setState({
-                  artistTitle: alteredAlbums[0].artist.title,
-                });
-              } else {
-                alteredAlbums = albums.map(album => {
-                  album.artist = artists.find(artist => artist.id === album.artistId);
-                  return album;
-                });
-              }
+              let alteredAlbums = albums.map(album => {
+                album.artist = artists.find(artist => artist.id === album.artistId);
+                return album;
+              });
+              
               this.setState({albumList: alteredAlbums});
             });
         },
@@ -72,6 +70,57 @@ class AlbumList extends React.Component {
           });
         }
       );
+  }
+
+  fetchArtistsAlbumList = (artistId) => {
+    fetch(`http://localhost:3004/albums/?artistId=${parseInt(artistId)}&_limit=${this.state.limit}`)
+    .then(res => res.json())
+    .then(
+      albums => {
+        fetch('http://localhost:3004/artists')
+          .then(res => res.json())
+          .then(artists => {
+            let alteredAlbums = albums.map(album => {
+              album.artist = artists.find(artist => artist.id === album.artistId);
+              return album;
+            });
+            
+            this.setState({
+              artistTitle: alteredAlbums[0].artist.title,
+              albumList: alteredAlbums,
+            });
+          });
+      },
+      error => {
+        this.setState({
+          error
+        });
+      }
+    );
+  }
+
+  fetchFilteredAlbumList = (filterValue) => {
+    fetch(`http://localhost:3004/albums/?q=${filterValue}&_limit=${this.state.limit}`)
+    .then(res => res.json())
+    .then(
+      albums => {
+        fetch('http://localhost:3004/artists')
+          .then(res => res.json())
+          .then(artists => {
+            let alteredAlbums = albums.map(album => {
+              album.artist = artists.find(artist => artist.id === album.artistId);
+              return album;
+            });
+            
+            this.setState({albumList: alteredAlbums});
+          });
+      },
+      error => {
+        this.setState({
+          error
+        });
+      }
+    );
   }
 
   handleAddToFavorites = (albumId) => {
@@ -112,13 +161,17 @@ class AlbumList extends React.Component {
       .catch(err => err);
   }
 
-  handleFilterAlbums = (searchInput) => {
+  handleFilterInputChange = (searchInput) => {
     if (searchInput.trim() === '') {
       this.setState({ suggestions: [] });
     } else {
       const suggestionAlbumTitles = this.state.albumList.filter(album => album.title.toLowerCase().startsWith(searchInput.toLowerCase()));
       this.setState({ suggestions: suggestionAlbumTitles });
     }
+  }
+
+  handleFilterSubmit = (filterValue) => {
+    this.fetchFilteredAlbumList(filterValue);
   }
 
 
@@ -130,7 +183,7 @@ class AlbumList extends React.Component {
       <React.Fragment>
         {artistId ?
           <ArtistAlbumListHeader artistTitle={artistTitle} /> :
-          <AlbumListHeader onFilterAlbums={this.handleFilterAlbums} suggestions={suggestions}/>
+          <AlbumListHeader onFilterInputChange={this.handleFilterInputChange} onFilterSubmit={this.handleFilterSubmit} suggestions={suggestions}/>
         }
         {albumList.length > 0 &&
         albumList.map((album, index) =>

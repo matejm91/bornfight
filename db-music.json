@@ -67,7 +67,7 @@
       "imageUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music/02/16/dd/mzi.modzlreh.jpg/170x170bb.png",
       "releaseDate": "1976-11-01T00:00:00-07:00",
       "artistId": 2,
-      "favorite": true,
+      "favorite": false,
       "artist": {
         "id": 2,
         "title": "James Taylor"

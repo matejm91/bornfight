@@ -4,18 +4,19 @@ import 'src/assets/style/_albumListHeader.css';
 import AlbumListFilter from "src/components/album/list/AlbumListFilter";
 
 const propTypes = {
-  onFilterAlbums: PropTypes.func,
+  onFilterInputChange: PropTypes.func,
+  onFilterSubmit: PropTypes.func,
   suggestions: PropTypes.array,
 };
 
 class AlbumListHeader extends React.Component {
   render () {
-    const {onFilterAlbums, suggestions} = this.props;
+    const {onFilterInputChange, onFilterSubmit, suggestions} = this.props;
 
     return (
       <div className='bornfight-albumListHeader__header'>
         <p>Album List</p>
-        <AlbumListFilter onFilterAlbums={onFilterAlbums} suggestions={suggestions}/>
+        <AlbumListFilter onFilterInputChange={onFilterInputChange} onFilterSubmit={onFilterSubmit} suggestions={suggestions}/>
       </div>
     );
   }
