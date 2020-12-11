@@ -15,7 +15,7 @@
   line-height: 28px;
   letter-spacing: -0.876px;
   color: #363636;
-  padding: 37px 180px;
+  padding: 30px 180px;
   display: flex;
   width: 15%;
   cursor: pointer;
@@ -32,4 +32,18 @@
 
 .material-icons {
   padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .bornfight-artistAlbumListHeader__header {
+    margin-bottom: 10px;
+  }
+
+  .bornfight-artistAlbumListHeader__header div {
+    width: 90%;
+    padding: 37px 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
 }

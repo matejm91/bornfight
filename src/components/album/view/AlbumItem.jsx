@@ -11,6 +11,7 @@ const propTypes = {
   title: PropTypes.string,
   artistId: PropTypes.string,
   favorite: PropTypes.string,
+  isInArtistView: PropTypes.bool,
   handleAddToFavorites: PropTypes.func,
   handleRemoveFromFavorites: PropTypes.func,
 };
@@ -29,7 +30,7 @@ class AlbumItem extends React.Component {
   }
 
   render() {
-    const {album} = this.props;
+    const {album, isInArtistView} = this.props;
 
     return (
       <div className="bornfight-albumItem__entry">
@@ -38,7 +39,13 @@ class AlbumItem extends React.Component {
         </div>
         <div className="bornfight-albumItem__entry-artistTitleColumn">
           <p className="bornfight-albumItem__entry-titleColumn">{album.title}</p>
-          <p className="bornfight-albumItem__entry-artistColumn"><a href={`/artist/${album.artistId}`}>{album.artist.title}</a></p>
+          <p className="bornfight-albumItem__entry-artistColumn">
+            {
+              isInArtistView ?
+              album.artist.title :
+              <a href={`/artist/${album.artistId}`}>{album.artist.title}</a>
+            }
+          </p>
         </div>
         <div className="bornfight-albumItem__entry-releasedColumn">
           Released: {moment(album.releaseDate).format('YYYY')}

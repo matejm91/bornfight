@@ -132,9 +132,9 @@ class AlbumList extends React.Component {
           <ArtistAlbumListHeader artistTitle={artistTitle} /> :
           <AlbumListHeader onFilterAlbums={this.handleFilterAlbums} suggestions={suggestions}/>
         }
-        {albumList.length &&
+        {albumList.length > 0 &&
         albumList.map((album, index) =>
-          (<AlbumItem album={album} key={index} onAddToFavorites={this.handleAddToFavorites} onRemoveFromFavorites={this.handleRemoveFromFavorites} />)
+          (<AlbumItem album={album} key={index} onAddToFavorites={this.handleAddToFavorites} onRemoveFromFavorites={this.handleRemoveFromFavorites} isInArtistView={artistId ? true : false} />)
         )}
       </React.Fragment>
     );

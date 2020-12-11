@@ -49,3 +49,29 @@
   color: #000;
 }
 
+@media only screen and (max-width: 600px) {
+  .bornfight-albumListFilter__search i {
+    right: 25px;
+  }
+
+  .bornfight-albumListFilter__search {
+    width: 90%;
+    margin: auto;
+  }
+
+  .bornfight-albumListFilter__input {
+    width: 85%;
+    padding: 12px 0;
+  }
+
+  .bornfight-albumListFilter__suggestionList {
+    position: relative;
+    width: 85%;
+    margin: 0 auto;
+    padding: 0px;
+  }
+
+  .bornfight-albumListFilter__suggestionListItem {
+    padding: 10px 5px;
+  }
+}

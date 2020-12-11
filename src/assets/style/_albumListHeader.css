@@ -20,3 +20,17 @@
   color: #363636;
 }
 
+@media only screen and (max-width: 600px) {
+  .bornfight-albumListHeader__header {
+    height: 120px;
+    display: block;
+    justify-content: normal;
+    padding: initial;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .bornfight-albumListHeader__header p {
+    padding: 10px;
+  }
+}

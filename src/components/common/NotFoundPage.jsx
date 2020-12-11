@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import 'src/assets/assets/style/_404.css'
-import notFoundGif from 'src/assets/assets/image/404.webp';
+import 'src/assets/style/_404.css'
+import notFoundGif from 'src/assets/image/404.webp';
 
 function NotFoundPage() {
   return(
