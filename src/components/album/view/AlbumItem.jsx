@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../assets/style/_albumEntry.css';
+import 'src/assets/style/_albumEntry.css';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 

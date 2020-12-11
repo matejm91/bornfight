@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AlbumItem from '../view/AlbumItem';
-import ArtistAlbumListHeader from "../../common/ArtistAlbumListHeader";
-import AlbumListHeader from "../../common/AlbumListHeader";
+import AlbumItem from 'src/components/album/view/AlbumItem';
+import ArtistAlbumListHeader from "src/components/common/ArtistAlbumListHeader";
+import AlbumListHeader from "src/components/common/AlbumListHeader";
 
 const propTypes = {
   fetchData: PropTypes.func,

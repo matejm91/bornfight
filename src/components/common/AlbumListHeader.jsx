@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../assets/style/_albumListHeader.css';
-import AlbumListFilter from "../album/list/AlbumListFilter";
 import PropTypes from 'prop-types';
+import 'src/assets/style/_albumListHeader.css';
+import AlbumListFilter from "src/components/album/list/AlbumListFilter";
 
 const propTypes = {
   onFilterAlbums: PropTypes.func,

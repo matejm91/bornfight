@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../assets/style/_albumListFilter.css';
+import 'src/assets/style/_albumListFilter.css';
 import PropTypes from 'prop-types';
 import {withRouter} from'react-router';
 

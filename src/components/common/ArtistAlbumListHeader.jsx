@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../assets/style/_artistAlbumListHeader.css';
-import {withRouter} from'react-router';
+import 'src/assets/style/_artistAlbumListHeader.css';
+import {withRouter} from 'react-router';
 
 function ArtistAlbumListHeader(props) {
   return (

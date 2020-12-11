@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import NotFoundPage from "./common/NotFoundPage";
-import AlbumList from "./album/list/AlbumList";
+import NotFoundPage from "src/components/common/NotFoundPage";
+import AlbumList from "src/components/album/list/AlbumList";
 
 const router = (
     <Router>
