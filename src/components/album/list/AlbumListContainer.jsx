@@ -13,7 +13,7 @@ const defaultProps = {
   fetchData: () => {}
 };
 
-class AlbumList extends React.Component {
+class AlbumListContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -196,7 +196,7 @@ class AlbumList extends React.Component {
   }
 }
 
-AlbumList.defaultProps = defaultProps;
-AlbumList.propTypes = propTypes;
+AlbumListContainer.defaultProps = defaultProps;
+AlbumListContainer.propTypes = propTypes;
 
-export default AlbumList;
+export default AlbumListContainer;
