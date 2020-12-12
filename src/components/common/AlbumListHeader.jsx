@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'src/assets/style/_albumListHeader.css';
-import AlbumListFilter from 'src/components/album/list/AlbumListFilter';
+import AlbumListFilter from 'components/album/list/AlbumListFilter';
+import 'assets/style/_albumListHeader.css';
 
 const propTypes = {
   onFilterInputChange: PropTypes.func,
   onFilterSubmit: PropTypes.func,
-  suggestions: PropTypes.array,
+  suggestions: PropTypes.arr,
+};
+
+const defaultProps = {
+  onFilterInputChange: () => {},
+  onFilterSubmit: () => {},
+  suggestions: [],
 };
 
 function AlbumListHeader(props) {
@@ -25,5 +31,6 @@ function AlbumListHeader(props) {
 }
 
 AlbumListHeader.propTypes = propTypes;
+AlbumListHeader.defaultProps = defaultProps;
 
 export default AlbumListHeader;

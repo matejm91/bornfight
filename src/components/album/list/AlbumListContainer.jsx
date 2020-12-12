@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AlbumItem from 'src/components/album/view/AlbumItem';
-import ArtistAlbumListHeader from "src/components/common/ArtistAlbumListHeader";
-import AlbumListHeader from "src/components/common/AlbumListHeader";
+import AlbumItem from 'components/album/view/AlbumItem';
+import ArtistAlbumListHeader from 'components/common/ArtistAlbumListHeader';
+import AlbumListHeader from 'components/common/AlbumListHeader';
 
 const propTypes = {
-  fetchData: PropTypes.func,
   artistId: PropTypes.string,
 };
 
 const defaultProps = {
-  fetchData: () => {}
+  artistId: '',
 };
 
 class AlbumListContainer extends React.Component {
@@ -22,109 +21,129 @@ class AlbumListContainer extends React.Component {
       limit: 10,
       artistTitle: '',
       suggestions: [],
-    }
+    };
   }
 
   componentDidMount() {
-    if (this.props.match.params.artistId) {
-      this.fetchArtistsAlbumList(this.props.match.params.artistId);
+    const { match } = this.props;
+
+    if (match.params.artistId) {
+      this.fetchArtistsAlbumList(match.params.artistId);
     } else {
       this.fetchData();
     }
-    
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.artistId !== this.props.match.params.artistId && this.props.match.params.artistId) {
-      this.fetchArtistsAlbumList(this.props.match.params.artistId);
+    const { match } = this.props;
 
-      this.setState({ suggestions: [] });
+    if (
+      prevProps.match.params.artistId !== match.params.artistId &&
+      match.params.artistId
+    ) {
+      this.fetchArtistsAlbumList(match.params.artistId);
+
+      this.resetSuggestionsState();
     }
 
-    if (prevProps.match.params.artistId !== this.props.match.params.artistId && !this.props.match.params.artistId) {
+    if (
+      prevProps.match.params.artistId !== match.params.artistId &&
+      !match.params.artistId
+    ) {
       this.fetchData();
 
-      this.setState({ suggestions: [] });
+      this.resetSuggestionsState();
     }
   }
 
   fetchData = () => {
-    fetch(`http://localhost:3004/albums?_limit=${this.state.limit}`)
-      .then(res => res.json())
+    const { limit } = this.state;
+
+    fetch(`http://localhost:3004/albums?_limit=${limit}`)
+      .then((res) => res.json())
       .then(
-        albums => {
+        (albums) => {
           fetch('http://localhost:3004/artists')
-            .then(res => res.json())
-            .then(artists => {
-              let alteredAlbums = albums.map(album => {
-                album.artist = artists.find(artist => artist.id === album.artistId);
-                return album;
+            .then((res) => res.json())
+            .then((artists) => {
+              const alteredAlbums = albums.map((album) => {
+                const alteredAlbum = { ...album };
+                alteredAlbum.artist = artists.find(
+                  (artist) => artist.id === album.artistId
+                );
+                return alteredAlbum;
               });
-              
-              this.setState({albumList: alteredAlbums});
+
+              this.setState({ albumList: alteredAlbums });
             });
         },
-        error => {
-          this.setState({
-            error
-          });
-        }
+        (error) => error
       );
-  }
+  };
 
   fetchArtistsAlbumList = (artistId) => {
-    fetch(`http://localhost:3004/albums/?artistId=${parseInt(artistId)}&_limit=${this.state.limit}`)
-    .then(res => res.json())
-    .then(
-      albums => {
-        fetch('http://localhost:3004/artists')
-          .then(res => res.json())
-          .then(artists => {
-            let alteredAlbums = albums.map(album => {
-              album.artist = artists.find(artist => artist.id === album.artistId);
-              return album;
+    const { limit } = this.state;
+
+    fetch(
+      `http://localhost:3004/albums/?artistId=${parseInt(
+        artistId,
+        10
+      )}&_limit=${limit}`
+    )
+      .then((res) => res.json())
+      .then(
+        (albums) => {
+          fetch('http://localhost:3004/artists')
+            .then((res) => res.json())
+            .then((artists) => {
+              const alteredAlbums = albums.map((album) => {
+                const alteredAlbum = { ...album };
+                alteredAlbum.artist = artists.find(
+                  (artist) => artist.id === album.artistId
+                );
+                return alteredAlbum;
+              });
+
+              this.setState({
+                artistTitle: alteredAlbums[0].artist.title,
+                albumList: alteredAlbums,
+              });
             });
-            
-            this.setState({
-              artistTitle: alteredAlbums[0].artist.title,
-              albumList: alteredAlbums,
-            });
-          });
-      },
-      error => {
-        this.setState({
-          error
-        });
-      }
-    );
-  }
+        },
+        (error) => error
+      );
+  };
 
   fetchFilteredAlbumList = (filterValue) => {
-    fetch(`http://localhost:3004/albums/?q=${filterValue}&_limit=${this.state.limit}`)
-    .then(res => res.json())
-    .then(
-      albums => {
-        fetch('http://localhost:3004/artists')
-          .then(res => res.json())
-          .then(artists => {
-            let alteredAlbums = albums.map(album => {
-              album.artist = artists.find(artist => artist.id === album.artistId);
-              return album;
+    const { limit } = this.state;
+
+    fetch(`http://localhost:3004/albums/?q=${filterValue}&_limit=${limit}`)
+      .then((res) => res.json())
+      .then(
+        (albums) => {
+          fetch('http://localhost:3004/artists')
+            .then((res) => res.json())
+            .then((artists) => {
+              const alteredAlbums = albums.map((album) => {
+                const alteredAlbum = { ...album };
+                alteredAlbum.artist = artists.find(
+                  (artist) => artist.id === album.artistId
+                );
+                return alteredAlbum;
+              });
+
+              this.setState({ albumList: alteredAlbums });
             });
-            
-            this.setState({albumList: alteredAlbums});
-          });
-      },
-      error => {
-        this.setState({
-          error
-        });
-      }
-    );
-  }
+        },
+        (error) => error
+      );
+  };
 
   handleAddToFavorites = (albumId) => {
-    let albumToEdit = this.state.albumList.filter(album => album.id === albumId)[0];
+    const { albumList } = this.state;
+    const { match } = this.props;
+
+    const albumToEdit = albumList.filter((album) => album.id === albumId)[0];
 
     albumToEdit.favorite = true;
 
@@ -133,65 +152,86 @@ class AlbumListContainer extends React.Component {
     return fetch(`http://localhost:3004/albums/${albumId}`, {
       method: 'PUT',
       headers: {
-        'Content-type': 'application/json; charset=UTF-8'
+        'Content-type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify(albumToEdit)
+      body: JSON.stringify(albumToEdit),
     })
-      .then(res => {
-        this.fetchData(this.props.match.params.artistId);
-        return res.json()
+      .then((res) => {
+        this.fetchData(match.params.artistId);
+        return res.json();
       })
-      .catch(err => err);
-  }
+      .catch((err) => err);
+  };
 
   handleRemoveFromFavorites = (albumId) => {
-    let albumToEdit = this.state.albumList.filter(album => album.id === albumId)[0];
+    const { albumList } = this.state;
+    const { match } = this.props;
+
+    const albumToEdit = albumList.filter((album) => album.id === albumId)[0];
 
     albumToEdit.favorite = false;
 
     return fetch(`http://localhost:3004/albums/${albumId}`, {
       method: 'PUT',
       headers: {
-        'Content-type': 'application/json; charset=UTF-8'
+        'Content-type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify(albumToEdit)
+      body: JSON.stringify(albumToEdit),
     })
-      .then(res => {
-        this.fetchData(this.props.match.params.artistId);
-        return res.json()
+      .then((res) => {
+        this.fetchData(match.params.artistId);
+        return res.json();
       })
-      .catch(err => err);
-  }
+      .catch((err) => err);
+  };
 
   handleFilterInputChange = (searchInput) => {
+    const { albumList } = this.state;
+
     if (searchInput.trim() === '') {
       this.setState({ suggestions: [] });
     } else {
-      const suggestionAlbumTitles = this.state.albumList.filter(album => album.title.toLowerCase().startsWith(searchInput.toLowerCase()));
+      const suggestionAlbumTitles = albumList.filter((album) =>
+        album.title.toLowerCase().startsWith(searchInput.toLowerCase())
+      );
       this.setState({ suggestions: suggestionAlbumTitles });
     }
-  }
+  };
 
   handleFilterSubmit = (filterValue) => {
     this.fetchFilteredAlbumList(filterValue);
-  }
+  };
 
+  resetSuggestionsState = () => {
+    this.setState({ suggestions: [] });
+  };
 
   render() {
-    const {artistTitle, suggestions, albumList} = this.state;
-    const {artistId} = this.props.match.params;
+    const { artistTitle, suggestions, albumList } = this.state;
+    const { match } = this.props;
 
     return (
-      <React.Fragment>
-        {artistId ?
-          <ArtistAlbumListHeader artistTitle={artistTitle} /> :
-          <AlbumListHeader onFilterInputChange={this.handleFilterInputChange} onFilterSubmit={this.handleFilterSubmit} suggestions={suggestions}/>
-        }
-        {albumList.length > 0 &&
-        albumList.map((album, index) =>
-          (<AlbumItem album={album} key={index} onAddToFavorites={this.handleAddToFavorites} onRemoveFromFavorites={this.handleRemoveFromFavorites} isInArtistView={artistId ? true : false} />)
+      <>
+        {match.params.artistId ? (
+          <ArtistAlbumListHeader artistTitle={artistTitle} />
+        ) : (
+          <AlbumListHeader
+            onFilterInputChange={this.handleFilterInputChange}
+            onFilterSubmit={this.handleFilterSubmit}
+            suggestions={suggestions}
+          />
         )}
-      </React.Fragment>
+        {albumList.length > 0 &&
+          albumList.map((album) => (
+            <AlbumItem
+              album={album}
+              key={album.id}
+              onAddToFavorites={this.handleAddToFavorites}
+              onRemoveFromFavorites={this.handleRemoveFromFavorites}
+              isInArtistView={!!match.params.artistId}
+            />
+          ))}
+      </>
     );
   }
 }

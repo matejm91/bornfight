@@ -7,6 +7,10 @@
 /.history
 /.idea
 .eslintcache
+.eslintrc
+.eslintignore
+.prettierrc
+jsconfig
 
 # testing
 /coverage
