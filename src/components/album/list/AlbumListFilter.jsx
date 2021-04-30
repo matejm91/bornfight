@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import 'assets/style/_albumListFilter.css';
 import PropTypes from 'prop-types';
@@ -68,7 +67,6 @@ class AlbumListFilter extends React.Component {
           {suggestions.length > 0 && (
             <ul className="bornfight-albumListFilter__suggestionList">
               {suggestions.map((suggestion) => (
-                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                 <li
                   className="bornfight-albumListFilter__suggestionListItem"
                   key={suggestion.id}
