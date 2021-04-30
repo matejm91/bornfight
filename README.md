@@ -2,7 +2,7 @@ To fully use this project you must install json-server by typing in your console
 ### `npm install -g json-server`
 
 After that, watch database by typing
-### `json-server --watch db-music.json` 
+### `json-server --watch db-music.json --port 3004` 
 
 and run the project by running
 ### `npm start` 
