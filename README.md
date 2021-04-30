@@ -1,3 +1,15 @@
+To fully use this project you must install json-server by typing in your console 
+### `npm install -g json-server`
+
+After that, watch database by typing
+### `json-server --watch db-music.json` 
+
+and run the project by running
+### `npm start` 
+or
+### `npm run start`
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
